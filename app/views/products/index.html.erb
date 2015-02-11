@@ -5,5 +5,7 @@
 <% @products.each do |product| %>
 	<p><%= product.name %>, <%= product.description %>, <%= product.formatted_price %>
 		<%= link_to 'View Product', product_path(product) %></p>	
+
+
 	
 <% end %>
