@@ -5,14 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Product.create!(
-  :name  => "Bed",
-  :description => "a queen size bed with box spring mattress and wood frame",
-  :price_in_cents => '5000'
-)
+Product.destroy_all
 
-Product.create!(
-  :name  => "Bike",
-  :description => "2 wheeler Puegot only ridden a couple of times",
-  :price_in_cents => '2000'
-)
+
+
+100.times do
+  Product.create!(
+    name: Faker::Company.catch_phrase,
+    description: "#{Faker::Company.bs} from #{Faker::Company.name} #{Faker::Company.suffix}",
+    price_in_cents: rand(100000)
+  )
+end

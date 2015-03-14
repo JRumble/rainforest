@@ -8,10 +8,10 @@ class User < ActiveRecord::Base
 	# secret
 	#end
 
+	validates :name, presence: true
 	#validates :password, confirmation: true
 	
 	has_many :reviews
   	has_many :products, through: :reviews
 
-  	validates :name, presence: true
 end

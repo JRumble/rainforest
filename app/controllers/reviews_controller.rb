@@ -4,23 +4,28 @@ class ReviewsController < ApplicationController
 	before_action :ensure_logged_in, only: [:create, :destroy]
 
   def show
-  	@review = Review.find(params[:id])
+    @review = Review.find(params[:id])
   end
 
   def create
-  	@review = @product.reviews.build(review_params)
+    @review = @product.reviews.build(review_params)
     @review.user = current_user
 
-  	if @review.save
-      redirect_to products_path, notice: 'Review created successfully'
+    if @review.save
+      respond_to do |format|
+        format.html do
+          redirect_to product_path(@review.product), notice: 'Review created successfully'
+        end
+        format.js   # create.js.erb
+      end
     else
       render 'products/show'
     end
   end
 
   def destroy
-  	@review = Review.find(params[:id])
-  	@review.destroy
+    @review = Review.find(params[:id])
+    @review.destroy
   end
 
   private
